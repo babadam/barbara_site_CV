@@ -25,6 +25,9 @@ if(isset($_GET['id_competence'])){ // on récupère la compétence par son ID da
     $pdoCV ->query($resultat);
     header("location: competences.php");
 } // ferme le if isset supression
+
+include('inc/header.inc.php');
+include('inc/nav.inc.php');
 ?>
 
 <!DOCTYPE html>
@@ -81,3 +84,5 @@ if(isset($_GET['id_competence'])){ // on récupère la compétence par son ID da
             </form>
     </body>
 </html>
+
+<?php include('inc/footer.inc.php'); ?>

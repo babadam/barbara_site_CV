@@ -19,6 +19,9 @@ $ligne_loisir = $resultat -> fetch();
 //pour afficher l'utilisateur
 $resultat = $pdoCV -> query("SELECT * FROM t_utilisateurs WHERE id_utilisateur = '1'");
 $ligne_utilisateur = $resultat -> fetch();
+
+include('inc/header.inc.php');
+include('inc/nav.inc.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -48,3 +51,5 @@ $ligne_utilisateur = $resultat -> fetch();
         </form>
     </body>
 </html>
+
+<?php include('inc/footer.inc.php'); ?>
