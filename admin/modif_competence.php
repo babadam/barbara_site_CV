@@ -1,6 +1,17 @@
 <?php
 require('connexion.php');
 
+// mise à jour d'une compétence
+if(isset($_POST['competence'])){ // par le nom d'une premier input
+    $competence = addslashes($_POST['competence']);
+    $c_niveau = addslashes($_POST['c_niveau']);
+    $id_competence = $_POST['id_competence'];
+
+    $pdoCV -> exec("UPDATE t_competences SET competence = '$competence', c_niveau = '$c_niveau' WHERE id_competence = '$id_competence'");
+    header('location: competences.php');
+    exit();
+}
+
 // je récupère la compétence
 $id_competence = $_GET['id_competence']; // par l'id et get
 $resultat = $pdoCV -> query("SELECT * FROM t_competences WHERE id_competence = '$id_competence'"); // la requete eest égale à l'ID
@@ -26,5 +37,17 @@ $ligne_utilisateur = $resultat -> fetch();
 
         <h2>Modification d'une compétence</h2>
         <p><?= $ligne_competence['competence'] ?></p>
+
+        <form action="#" method="post">
+            <label for="competence">Compétence :</label><br>
+            <input type="text" name="competence" id ="competence" value="<?= $ligne_competence['competence'] ?>"><br><br>
+
+            <label for="c_niveau">Niveau :</label><br>
+            <input type="number" name="c_niveau" id= "c_niveau" value="<?= $ligne_competence['c_niveau'] ?>"><br><br>
+
+            <input hidden name="id_competence" value="<?= $ligne_competence['id_competence'] ?>">
+
+            <input type="submit" name="" value="Modifier">
+        </form>
     </body>
 </html>
