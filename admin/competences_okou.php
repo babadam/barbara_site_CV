@@ -9,8 +9,8 @@ if(isset($_POST['competence'])){ // Si on a posté une nouvelle compétence
         echo 'rentre dans $_POST pas vide IF ligne 8';
         $competence = addslashes($_POST['competence']);
         $c_niveau = addslashes($_POST['c_niveau']);
-        $pdoCV -> exec("INSERT INTO t_competences (id_competence, competence, c_niveau, utilisateur_id) VALUES (NULL, '$competence', '$c_niveau', 1)"); // mettre $id_utilisateur quand on l'aura dans la variable de session
-        header("location:competences.php");
+        $pdoCV -> exec("INSERT INTO t_competences (id_competence, competence, utilisateur_id) VALUES (NULL, '$competence', '$c_niveau', 1)"); // mettre $id_utilisateur quand on l'aura dans la variable de session
+        header("location: competences.php");
         exit();
 
     }// ferme if n'est pas vide
@@ -18,8 +18,7 @@ if(isset($_POST['competence'])){ // Si on a posté une nouvelle compétence
 } // ferme le if isset insertion
 
 // Supression d'une compétence
-if(isset($_GET['id_competence'])){
- // on récupère la compétence par son ID dans l'url
+if(isset($_GET['id_competence'])){ // on récupère la compétence par son ID dans l'url
     $efface = $_GET['id_competence'];
     $resultat = " DELETE FROM t_competences WHERE id_competence = '$efface' ";
     $pdoCV ->query($resultat);
@@ -53,17 +52,17 @@ include('inc/nav.inc.php');
                 <div class="panel-body">
                     <table class="table table-bordered table-striped">
                         <tr>
-                            <th>Compétence</th>
+                            <th>competence</th>
                             <th>Niveau en %</th>
-                            <th>Modification</th>
                             <th>Supression</th>
+                            <th>Modification</th>
                         </tr>
                         <tr>
                         <?php while($ligne_competence = $resultat -> fetch(PDO::FETCH_ASSOC) ) {?>
                            <td><?php echo $ligne_competence['competence'] ;?></td>
                            <td><?php echo $ligne_competence['c_niveau'] ;?></td>
-                           <td><a href="modif_competence.php?id_competence=<?= $ligne_competence['id_competence']; ?>"><button type="button" class="btn btn-success">Modifier</button></a></td>
-                           <td><a href="competences.php?id_competence=<?= $ligne_competence['id_competence']; ?>"><button type="button" class="btn btn-danger">Supprimer</button></a></td>
+                           <td><a href="modif_competence.php?id_competence=<?= $ligne_competence['id_competence']; ?>">modifier</a></td>
+                           <td><a href="competences.php?id_competence=<?= $ligne_competence['id_competence']; ?>">supprimer</a></td>
                        </tr>
                         <?php } ?>
                     </table>
@@ -79,7 +78,7 @@ include('inc/nav.inc.php');
                 <div class="panel-body">
                     <form action="competences.php" method="post">
                         <div class="form-group">
-                            <label for="competence">Compétence</label>
+                            <label for="competence">competence</label>
                             <input type="text" class="form-control" id="competence" name="competence" placeholder="Insérez votre competence">
                         </div>
                         <div class="form-group">

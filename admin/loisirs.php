@@ -1,11 +1,8 @@
 <?php
 require('connexion.php');
 $resultat = $pdoCV -> query("SELECT * FROM t_utilisateurs WHERE id_utilisateur = '1'");
-$ligne_utilisateur = $resultat -> fetch();
+$ligne_utilisateur = $resultat -> fetch(PDO::FETCH_ASSOC);
 
-// Gestion des contenus de la BDD compétence
-
-// Insertion d'une compétence
 if(isset($_POST['loisir'])){ // Si on a posté une nouvelle compétence
     if(!empty($_POST['loisir'])){ // Si compétence n'est pas vide
         $loisir = addslashes($_POST['loisir']);
@@ -25,58 +22,67 @@ if(isset($_GET['id_loisir'])){ // on récupère la compétence par son ID dans l
     header("location: loisirs.php");
 } // ferme le if isset supression
 
+    $resultat = $pdoCV -> prepare("SELECT * FROM t_loisirs WHERE utilisateur_id = '1'");
+    $resultat -> execute();
+    $nbr_loisirs =  $resultat -> rowCount();
+
+
 include('inc/header.inc.php');
 include('inc/nav.inc.php');
 ?>
+<div class="container">
+    <div class="row">
+        <h1><?= $ligne_utilisateur['prenom']?></h1>
+        <!-- <h2>Admin Baba</h2> -->
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <p> Il y a <?= $nbr_loisirs; ?> loisirs</p>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <p>Liste des loisirs</p>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th>Loisirs</th>
+                            <th>Modification</th>
+                            <th>Supression</th>
+                        </tr>
+                        <tr>
+                        <?php while($ligne_loisir = $resultat -> fetch(PDO::FETCH_ASSOC) ) {?>
+                           <td><?php echo $ligne_loisir['loisir'] ;?></td>
+                           <td><a href="modif_loisir.php?id_loisir=<?= $ligne_loisir['id_loisir']; ?>"><button type="button" class="btn btn-success">Modifier</button></a></td>
+                           <td><a href="loisirs.php?id_loisir=<?= $ligne_loisir['id_loisir']; ?>"><button type="button" class="btn btn-danger">Supprimer</button></a></td>
+                       </tr>
+                        <?php } ?>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
 
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <title>Admin : <?= $ligne_utilisateur['pseudo']?> </title>
-        </head>
-    </head>
-    <body>
-        <h1>Admin <?= $ligne_utilisateur['prenom']?></h1>
-        <p>Texte</p>
-        <hr>
-        <?php
-            $resultat = $pdoCV -> prepare("SELECT * FROM t_loisirs WHERE utilisateur_id = '1'");
-            $resultat -> execute();
-            $nbr_loisirs =  $resultat -> rowCount();
-        ?>
-        <h2> Mes loisirs</h2>
-        <p> Il y a <?= $nbr_loisirs; ?> loisirs</p>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                        <p>Insertion d'une loisir</p>
+                </div>
+                <div class="panel-body">
+                    <form action="loisirs.php" method="post">
+                        <div class="form-group">
+                            <label for="loisir">Loisir</label>
+                            <input type="text" class="form-control" id="loisir" name="loisir" placeholder="Insérez votre loisir">
+                        </div>
 
-        <table border="2">
-            <tr>
-                <th>Loisirs</th>
-                <th>Modification</th>
-                <th>Suppression</th>
-            </tr>
-            <tr>
-            <?php while($ligne_loisir = $resultat -> fetch(PDO::FETCH_ASSOC) ) {?>
-               <td><?php echo $ligne_loisir['loisir'] ;?></td>
-               <td><a href="modif_loisir.php?id_loisir=<?= $ligne_loisir['id_loisir']; ?>">modifier</a></td>
-               <td><a href="loisirs.php?id_loisir=<?= $ligne_loisir['id_loisir']; ?>">supprimer</a></td>
-           </tr>
-            <?php } ?>
-        </table>
-        <hr>
+                        <button type="submit" class="btn btn-info btn-block">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <h3>Insertion d'un loisir</h3>
-
-            <!--formulaire d'insertion-->
-            <form action="loisirs.php" method="post">
-                <label for="loisir"> Loisir :</label><br>
-                <input type="text" name="loisir" id="loisir" placeholder="Insérez votre loisir"><br><br>
-
-                <input type="submit" value="Insérez">
-            </form>
-    </body>
-</html>
-
-<?php include('inc/footer.inc.php'); ?>
+</div>
+            <?php include('inc/footer.inc.php'); ?>
