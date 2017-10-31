@@ -25,7 +25,6 @@ include('inc/nav.inc.php');
 ?>
 
         <h1>Admin <?= $ligne_utilisateur['prenom']?></h1>
-        <p>Texte</p>
         <hr>
 
         <h2>Modification d'une compétence</h2>

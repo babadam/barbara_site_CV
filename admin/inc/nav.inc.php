@@ -20,9 +20,9 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Parcours <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Expériences</a></li>
-                                <li><a href="#">Réalisations</a></li>
-                                <li><a href="#">Formations</a></li>
+                                <li><a href="experiences.php">Expériences</a></li>
+                                <li><a href="realisations.php">Réalisations</a></li>
+                                <li><a href="formations.php">Formations</a></li>
                                 <!-- <li role="separator" class="divider"></li>
                                 <li><a href="#">Separated link</a></li>
                                 <li role="separator" class="divider"></li>
@@ -66,5 +66,3 @@
             </div><!-- /.container-fluid -->
         </nav>
     <section>
-
-    
