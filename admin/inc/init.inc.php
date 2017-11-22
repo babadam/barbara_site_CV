@@ -1,6 +1,7 @@
 <?php
 
 $msg='';
+$page='';
 
 // connexion à la session
 session_start();

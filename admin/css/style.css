@@ -8,20 +8,24 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
   background: url(../img/bg.jpg) repeat;
+  font-family: 'Amaranth', sans-serif;
 }
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #CD5C5C;
-  color: #803939;
+  height: 40px;
+  background-color: #E8C8C8;
+  color: #D9A9A9;
 }
 *{
     margin: 0;
 }
-
+h1{
+  font-family: 'Spectral SC', serif;
+  color: #6D5555;
+}
 
 /* Custom page CSS
 -------------------------------------------------- */
@@ -31,14 +35,14 @@ body > .container {
   padding: 60px 15px 0;
 }
 .container .text-muted {
-  margin: 20px 0;
-  color: #803939;
+  margin: 10px 14px;
+  color: #803939;s
 }
 
-.footer > .container {
+/*.footer > .container {
   padding-right: 15px;
   padding-left: 15px;
-}
+}*/
 
 code {
   font-size: 80%;
@@ -48,16 +52,42 @@ code {
     width: 100%;
 }
 
+/************** PAGE CONNEXION *********/
+/*formulaire*/
 #connexion{
     padding: 30px;
+    box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.40);
+    border-radius: 10px;
 }
+
+/*hover bouton*/
+input[type=submit].btn-block:hover{
+    background-color: #6D5555;
+    border-color: #6D5555;
+}
+/**************** NAV ****************/
 .couleur{
-    background-color: #E78080;
-    border-color: #E78080;
+    background-color: #B47D7D;
+    border-color: #D9A9A9;
     }
     .navbar-inverse .navbar-nav>li>a{
         color: #FFF;
+        font-family: 'Spectral SC', serif;
     }
+    .navbar-inverse .navbar-nav>li>a:hover{
+        color: #6D5555;
+    }
+    
     .navbar-inverse .navbar-brand {
-    color: #803939;
+    color: #6D5555;
+    font-family: 'Spectral SC', serif;
     }
+    .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover{
+      background-color: #6D5555;
+    }
+    .panel-default>.panel-heading{
+      background-color: mistyrose;
+      border-color: mistyrose;
+    }
+    
+/************** FIN NAV ****************/    

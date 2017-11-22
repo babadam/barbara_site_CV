@@ -82,7 +82,7 @@ if(!empty($_POST)){
 $page = 'Connexion';
 require_once('inc/header.inc.php');
 ?>
-<nav class="navbar navbar-default "></nav>
+<nav class="navbar navbar-default couleur"></nav>
 <!-- Contenu HTML -->
 <h1>Connexion</h1>
 

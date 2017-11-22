@@ -44,7 +44,7 @@ include('inc/nav.inc.php');
     <!-- <?php echo $msg ?> -->
     <div class="row">
         <div class="col-md-8">
-            <div class="panel panel-success">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <p> Il y a <?= $nbr_experiences; ?> expériences</p>
                 </div>
@@ -80,7 +80,7 @@ include('inc/nav.inc.php');
         </div>
         <div class="col-md-4">
 
-            <div class="panel panel-info">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                         <p>Insertion d'une experience</p>
                 </div>

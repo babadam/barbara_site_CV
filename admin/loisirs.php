@@ -36,9 +36,13 @@ include('inc/nav.inc.php');
     </div>
     <div class="row">
         <div class="col-md-8">
-            <div class="panel panel-success">
+            <div class="panel panel-default">
                 <div class="panel-heading">
-                    <p> Il y a <?= $nbr_loisirs; ?> loisirs</p>
+                    <p> Il y a <?php if ($nbr_loisirs = 0){
+                    echo $nbr_loisirs.' loisir';
+                    }else{
+                    echo $nbr_loisirs.' loisirs';    
+                    }?></p>
                 </div>
             </div>
             <div class="panel panel-default">
@@ -65,9 +69,9 @@ include('inc/nav.inc.php');
         </div>
         <div class="col-md-4">
 
-            <div class="panel panel-info">
+            <div class="panel panel-default">
                 <div class="panel-heading">
-                        <p>Insertion d'une loisir</p>
+                        <p>Insertion d'un loisir</p>
                 </div>
                 <div class="panel-body">
                     <form action="loisirs.php" method="post">

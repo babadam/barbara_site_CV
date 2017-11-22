@@ -40,7 +40,6 @@ include('inc/nav.inc.php');
                             <th>Code postal</th>
                             <th>Ville</th>
                             <th>Pays</th>
-                            <th>Avatar</th>
                             <th>Modifier</th>
                         </tr>
                         <tr>
@@ -57,7 +56,6 @@ include('inc/nav.inc.php');
                            <td><?php echo $ligne_utilisateur['code_postal'] ;?></td>
                            <td><?php echo $ligne_utilisateur['ville'] ;?></td>
                            <td><?php echo $ligne_utilisateur['pays'] ;?></td>
-                           <td><?php echo $ligne_utilisateur['avatar'] ;?></td>
                            <td><a href="modif_utilisateur.php?id_utilisateur=<?= $ligne_utilisateur['id_utilisateur']; ?>"><button type="button" class="btn btn-success">Modifier</button></a></td>
                        </tr>
 
