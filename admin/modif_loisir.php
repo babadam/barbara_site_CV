@@ -1,5 +1,5 @@
 <?php
-require('connexion.php');
+include('inc/init.inc.php');
 
 // mise à jour d'une compétence
 if(isset($_POST['loisir'])){ // par le nom d'une premier input

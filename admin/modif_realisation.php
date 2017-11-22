@@ -1,5 +1,5 @@
 <?php
-require('connexion.php');
+include('inc/init.inc.php');
 $titre='';
 $sousTitre='';
 $dates='';

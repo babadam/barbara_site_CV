@@ -7,6 +7,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  background: url(../img/bg.jpg) repeat;
 }
 .footer {
   position: absolute;
@@ -14,7 +15,8 @@ body {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
-  background-color: #f5f5f5;
+  background-color: #CD5C5C;
+  color: #803939;
 }
 *{
     margin: 0;
@@ -30,6 +32,7 @@ body > .container {
 }
 .container .text-muted {
   margin: 20px 0;
+  color: #803939;
 }
 
 .footer > .container {
@@ -44,3 +47,17 @@ code {
 #profil{
     width: 100%;
 }
+
+#connexion{
+    padding: 30px;
+}
+.couleur{
+    background-color: #E78080;
+    border-color: #E78080;
+    }
+    .navbar-inverse .navbar-nav>li>a{
+        color: #FFF;
+    }
+    .navbar-inverse .navbar-brand {
+    color: #803939;
+    }

@@ -1,7 +1,6 @@
 <?php
-require('connexion.php');
-$resultat = $pdoCV -> query("SELECT * FROM t_utilisateurs WHERE id_utilisateur = '1'");
-$ligne_utilisateur = $resultat -> fetch(PDO::FETCH_ASSOC);
+include('inc/init.inc.php');
+
 
 if(isset($_POST['loisir'])){ // Si on a posté une nouvelle compétence
     if(!empty($_POST['loisir'])){ // Si compétence n'est pas vide

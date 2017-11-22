@@ -1,5 +1,5 @@
 <?php
-require('connexion.php');
+include('inc/init.inc.php');
 
 
 $resultat = $pdoCV -> query("SELECT * FROM t_utilisateurs WHERE id_utilisateur = '1'");
@@ -42,7 +42,6 @@ include('inc/nav.inc.php');
                             <th>Pays</th>
                             <th>Avatar</th>
                             <th>Modifier</th>
-                            <th>Supprimer</th>
                         </tr>
                         <tr>
 
@@ -60,9 +59,7 @@ include('inc/nav.inc.php');
                            <td><?php echo $ligne_utilisateur['pays'] ;?></td>
                            <td><?php echo $ligne_utilisateur['avatar'] ;?></td>
                            <td><a href="modif_utilisateur.php?id_utilisateur=<?= $ligne_utilisateur['id_utilisateur']; ?>"><button type="button" class="btn btn-success">Modifier</button></a></td>
-                           <td><a href="utilisateur.php?id_utilisateur=<?= $ligne_utilisateur['id_utilisateur']; ?>"><button type="button" class="btn btn-danger">Supprimer</button></a></td>
                        </tr>
-
 
                     </table>
                 </div>
@@ -70,32 +67,5 @@ include('inc/nav.inc.php');
             </div>
         </div>
     </div>
-    <div class="row">
-
-
-        <div class="col-md-4">
-
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                        <p>Insertion d'une competence</p>
-                </div>
-                <div class="panel-body">
-                    <form action="competences.php" method="post">
-                        <div class="form-group">
-                            <label for="competence">Compétence</label>
-                            <input type="text" class="form-control" id="competence" name="competence" placeholder="Insérez votre competence">
-                        </div>
-                        <div class="form-group">
-                            <label for="c_niveau">Niveau</label>
-                            <input type="text" class="form-control" id="c_niveau" name="c_niveau" placeholder="Insérez votre competence">
-                        </div>
-
-                        <button type="submit" class="btn btn-info btn-block">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>
             <?php include('inc/footer.inc.php'); ?>
