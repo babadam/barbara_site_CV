@@ -1,8 +1,19 @@
 <?php
 
 include('inc/init.inc.php');
-$resultat = $pdoCV -> query("SELECT * FROM t_utilisateurs WHERE id_utilisateur = '1'");
-$ligne_utilisateur = $resultat -> fetch(PDO::FETCH_ASSOC);
+
+if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){ // si pas connecté : redirection vers le formulaire de ocnnexion
+    $id_utilisateur = $_SESSION['id_utilisateur'];
+    $prenom = $_SESSION['prenom'];
+    $nom = $_SESSION['nom'];
+
+    // echo $_SESSION['connexion'];
+}else{ // l'utilisateur n'est pas connecté
+    header('location: connexionAdmin.php');
+}
+
+$sql = $pdoCV -> query("SELECT * FROM t_utilisateurs WHERE id_utilisateur = '$id_utilisateur'");
+$ligne_utilisateur = $sql -> fetch(PDO::FETCH_ASSOC);
 
 if(isset($_POST['f_titre'])){ // Si on a posté une nouvelle compétence
     echo 'rentre dans ligne 6 => ok';
@@ -11,7 +22,7 @@ if(isset($_POST['f_titre'])){ // Si on a posté une nouvelle compétence
         $sousTitre = addslashes($_POST['f_soustitre']);
         $dates = addslashes($_POST['f_dates']);
         $description = addslashes($_POST['f_description']);
-        $pdoCV -> exec("INSERT INTO t_formation (f_titre, f_soustitre, f_dates, f_description, utilisateur_id) VALUES ('$titre', '$sousTitre', '$dates', '$description', '1')"); // mettre $id_utilisateur quand on l'aura dans la variable de session
+        $pdoCV -> exec("INSERT INTO t_formation (f_titre, f_soustitre, f_dates, f_description, utilisateur_id) VALUES ('$titre', '$sousTitre', '$dates', '$description', '$id_utilisateur')"); // mettre $id_utilisateur quand on l'aura dans la variable de session
         header("location:formations.php");
         exit();
 
@@ -22,14 +33,14 @@ if(isset($_POST['f_titre'])){ // Si on a posté une nouvelle compétence
 if(isset($_GET['id_formation'])){
  // on récupère la compétence par son ID dans l'url
     $efface = $_GET['id_formation'];
-    $resultat = " DELETE FROM t_formation WHERE id_formation = '$efface' ";
-    $pdoCV ->query($resultat);
+    $sql = " DELETE FROM t_formation WHERE id_formation = '$efface' ";
+    $pdoCV ->query($sql);
     header("location: formations.php");
 } // ferme le if isset supression
 
-    $resultat = $pdoCV -> prepare("SELECT * FROM t_formation WHERE utilisateur_id = '1'");
-    $resultat -> execute();
-    $nbr_formations =  $resultat -> rowCount();
+    $sql = $pdoCV -> prepare("SELECT * FROM t_formation WHERE utilisateur_id = '$id_utilisateur'");
+    $sql -> execute();
+    $nbr_formations =  $sql -> rowCount();
 
 
 include('inc/header.inc.php');
@@ -45,7 +56,11 @@ include('inc/nav.inc.php');
         <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <p> Il y a <?= $nbr_formations; ?> formations</p>
+                    <p> Il y a <?php if ($nbr_formations <= 1){
+                        echo $nbr_formations.' formation';
+                        }else{
+                        echo $nbr_formations.' formations';
+                        }?></p>
                 </div>
             </div>
             <div class="panel panel-default">
@@ -53,6 +68,7 @@ include('inc/nav.inc.php');
                     <p>Liste des formations</p>
                 </div>
                 <div class="panel-body">
+                    <div class="table-responsive">
                     <table class="table table-bordered table-striped">
                         <tr>
                             <th>Titre</th>
@@ -64,7 +80,7 @@ include('inc/nav.inc.php');
 
                         </tr>
                         <tr>
-                        <?php while($ligne_formation = $resultat -> fetch(PDO::FETCH_ASSOC) ) {?>
+                        <?php while($ligne_formation = $sql -> fetch(PDO::FETCH_ASSOC) ) {?>
                            <td><?php echo $ligne_formation['f_titre'] ;?></td>
                            <td><?php echo $ligne_formation['f_soustitre'] ;?></td>
                            <td><?php echo $ligne_formation['f_dates'] ;?></td>
@@ -74,6 +90,7 @@ include('inc/nav.inc.php');
                        </tr>
                         <?php } ?>
                     </table>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,11 +1,21 @@
 <?php
 include('inc/init.inc.php');
 
+if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){ // si pas connecté : redirection vers le formulaire de ocnnexion
+    $id_utilisateur = $_SESSION['id_utilisateur'];
+    $prenom = $_SESSION['prenom'];
+    $nom = $_SESSION['nom'];
+
+    // echo $_SESSION['connexion'];
+}else{ // l'utilisateur n'est pas connecté
+    header('location: connexionAdmin.php');
+}
+
 
 if(isset($_POST['loisir'])){ // Si on a posté une nouvelle compétence
     if(!empty($_POST['loisir'])){ // Si compétence n'est pas vide
         $loisir = addslashes($_POST['loisir']);
-        $pdoCV -> exec("INSERT INTO t_loisirs (id_loisir, loisir, utilisateur_id) VALUES (NULL, '$loisir', '1')"); // mettre $id_utilisateur quand on l'aura dans la variable de session
+        $pdoCV -> exec("INSERT INTO t_loisirs (id_loisir, loisir, utilisateur_id) VALUES (NULL, '$loisir', '$id_utilisateur')"); // mettre $id_utilisateur quand on l'aura dans la variable de session
         header("location: loisirs.php");
         exit();
 
@@ -16,14 +26,14 @@ if(isset($_POST['loisir'])){ // Si on a posté une nouvelle compétence
 // Supression d'une compétence
 if(isset($_GET['id_loisir'])){ // on récupère la compétence par son ID dans l'url
     $efface = $_GET['id_loisir'];
-    $resultat = " DELETE FROM t_loisirs WHERE id_loisir = '$efface' ";
-    $pdoCV ->query($resultat);
+    $sql = " DELETE FROM t_loisirs WHERE id_loisir = '$efface' ";
+    $pdoCV ->query($sql);
     header("location: loisirs.php");
 } // ferme le if isset supression
 
-    $resultat = $pdoCV -> prepare("SELECT * FROM t_loisirs WHERE utilisateur_id = '1'");
-    $resultat -> execute();
-    $nbr_loisirs =  $resultat -> rowCount();
+    $sql = $pdoCV -> prepare("SELECT * FROM t_loisirs WHERE utilisateur_id = '$id_utilisateur'");
+    $sql -> execute();
+    $nbr_loisirs =  $sql -> rowCount();
 
 
 include('inc/header.inc.php');
@@ -38,11 +48,11 @@ include('inc/nav.inc.php');
         <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <p> Il y a <?php if ($nbr_loisirs = 0){
-                    echo $nbr_loisirs.' loisir';
-                    }else{
-                    echo $nbr_loisirs.' loisirs';    
-                    }?></p>
+                    <p> Il y a <?php if ($nbr_loisirs <= 1){
+                        echo $nbr_loisirs.' loisir';
+                        }else{
+                        echo $nbr_loisirs.' loisirs';
+                        }?></p>
                 </div>
             </div>
             <div class="panel panel-default">
@@ -50,6 +60,7 @@ include('inc/nav.inc.php');
                     <p>Liste des loisirs</p>
                 </div>
                 <div class="panel-body">
+                    <div class="table-responsive">
                     <table class="table table-bordered table-striped">
                         <tr>
                             <th>Loisirs</th>
@@ -57,13 +68,14 @@ include('inc/nav.inc.php');
                             <th>Supression</th>
                         </tr>
                         <tr>
-                        <?php while($ligne_loisir = $resultat -> fetch(PDO::FETCH_ASSOC) ) {?>
+                        <?php while($ligne_loisir = $sql -> fetch(PDO::FETCH_ASSOC) ) {?>
                            <td><?php echo $ligne_loisir['loisir'] ;?></td>
                            <td><a href="modif_loisir.php?id_loisir=<?= $ligne_loisir['id_loisir']; ?>"><button type="button" class="btn btn-success">Modifier</button></a></td>
                            <td><a href="loisirs.php?id_loisir=<?= $ligne_loisir['id_loisir']; ?>"><button type="button" class="btn btn-danger">Supprimer</button></a></td>
                        </tr>
                         <?php } ?>
                     </table>
+                    </div>
                 </div>
             </div>
         </div>

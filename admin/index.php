@@ -1,7 +1,16 @@
 <?php
 include('inc/init.inc.php');
-$resultat = $pdoCV -> query("SELECT * FROM t_utilisateurs WHERE id_utilisateur = '1'");
-$ligne_utilisateur = $resultat -> fetch(PDO::FETCH_ASSOC);
+
+if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){
+    $id_utilisateur = $_SESSION['id_utilisateur'];
+    $prenom = $_SESSION['prenom'];
+    $nom = $_SESSION['nom'];
+
+    // echo $_SESSION['connexion'];
+}else{ // l'utilisateur n'est pas connecté
+    header('location: connexionAdmin.php');
+}
+
 
 include('inc/header.inc.php');
 include('inc/nav.inc.php');

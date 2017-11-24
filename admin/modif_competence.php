@@ -1,6 +1,16 @@
 <?php
 include('inc/init.inc.php');
 
+if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){ // si pas connecté : redirection vers le formulaire de ocnnexion
+    $id_utilisateur = $_SESSION['id_utilisateur'];
+    $prenom = $_SESSION['prenom'];
+    $nom = $_SESSION['nom'];
+
+    echo $_SESSION['connexion'];
+}else{ // l'utilisateur n'est pas connecté
+    header('location: connexionAdmin.php');
+}
+
 // mise à jour d'une compétence
 if(isset($_POST['competence'])){ // par le nom d'une premier input
     $competence = addslashes($_POST['competence']);
@@ -14,11 +24,11 @@ if(isset($_POST['competence'])){ // par le nom d'une premier input
 
 // je récupère la compétence
 $id_competence = $_GET['id_competence']; // par l'id et get
-$resultat = $pdoCV -> query("SELECT * FROM t_competences WHERE id_competence = '$id_competence'"); // la requete eest égale à l'ID
-$ligne_competence = $resultat -> fetch();
+$sql = $pdoCV -> query("SELECT * FROM t_competences WHERE id_competence = '$id_competence'"); // la requete eest égale à l'ID
+$ligne_competence = $sql -> fetch();
 
-$resultat = $pdoCV -> query("SELECT * FROM t_utilisateurs WHERE id_utilisateur = '1'");
-$ligne_utilisateur = $resultat -> fetch();
+$sql = $pdoCV -> query("SELECT * FROM t_utilisateurs WHERE id_utilisateur = '$id_utilisateur'");
+$ligne_utilisateur = $sql -> fetch();
 
 include('inc/header.inc.php');
 include('inc/nav.inc.php');

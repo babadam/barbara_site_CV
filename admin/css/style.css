@@ -77,7 +77,7 @@ input[type=submit].btn-block:hover{
     .navbar-inverse .navbar-nav>li>a:hover{
         color: #6D5555;
     }
-    
+
     .navbar-inverse .navbar-brand {
     color: #6D5555;
     font-family: 'Spectral SC', serif;
@@ -89,5 +89,9 @@ input[type=submit].btn-block:hover{
       background-color: mistyrose;
       border-color: mistyrose;
     }
-    
-/************** FIN NAV ****************/    
+    .shadowNav{
+        box-shadow: 0px 2px 14px 1px rgba(0,0,0,0.75);
+    }
+
+
+/************** FIN NAV ****************/

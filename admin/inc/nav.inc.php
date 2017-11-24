@@ -1,16 +1,17 @@
 <body>
     <nav class="navbar navbar-inverse couleur"> <!--NAV-->
-        <div class="container-fluid">
+        <div class="container-fluid shadowNav">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
-                         <span class="icon-bar"></span>
-                         <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="profil.php"><?= $ligne_utilisateur['pseudo'] ?></a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <a class="navbar-brand" href="profil.php"><?= $ligne_utilisateur['pseudo'] ?></a>
 
                         <li class="dropdown"> <!-- menu déroulant Parcours-->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Parcours <span class="caret"></span></a>
@@ -33,9 +34,12 @@
 
                      <!-- bouton déconnexion -->
                      <div class="nav navbar-nav navbar-right">
-                         <ul class="nav navbar-nav">
-                             <li><a class="navbar-brand" href="connexionAdmin.php?action=deconnexion"><span class="glyphicon glyphicon-off" aria-hidden="true"></a></li>
-                         </ul>
+                         <!-- <ul class="nav navbar-nav"> -->
+                            <a class="navbar-brand" href="connexionAdmin.php?action=deconnexion"><span class="glyphicon glyphicon-off" aria-hidden="true"></a>
+
+                          <!-- <li><a class="navbar-brand" href="connexionAdmin.php?action=deconnexion"><span class="glyphicon glyphicon-off" aria-hidden="true"></a></li> -->
+
+                         <!-- </ul> -->
                      </div>
                  </div>
              </div><!-- fin container fluid-->

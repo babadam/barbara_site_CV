@@ -1,8 +1,19 @@
 <?php
 
 include('inc/init.inc.php');
-$resultat = $pdoCV -> query("SELECT * FROM t_utilisateurs WHERE id_utilisateur = '1'");
-$ligne_utilisateur = $resultat -> fetch(PDO::FETCH_ASSOC);
+
+if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){ // si pas connecté : redirection vers le formulaire de ocnnexion
+    $id_utilisateur = $_SESSION['id_utilisateur'];
+    $prenom = $_SESSION['prenom'];
+    $nom = $_SESSION['nom'];
+
+    // echo $_SESSION['connexion'];
+}else{ // l'utilisateur n'est pas connecté
+    header('location: connexionAdmin.php');
+}
+
+$sql = $pdoCV -> query("SELECT * FROM t_utilisateurs WHERE id_utilisateur = '$id_utilisateur'");
+$ligne_utilisateur = $sql -> fetch(PDO::FETCH_ASSOC);
 
 if(isset($_POST['e_titre'])){ // Si on a posté une nouvelle compétence
     echo 'rentre dans ligne 6 => ok';
@@ -11,7 +22,7 @@ if(isset($_POST['e_titre'])){ // Si on a posté une nouvelle compétence
         $sousTitre = addslashes($_POST['e_soustitre']);
         $dates = addslashes($_POST['e_dates']);
         $description = addslashes($_POST['e_description']);
-        $pdoCV -> exec("INSERT INTO t_experiences (e_titre, e_soustitre, e_dates, e_description, utilisateur_id) VALUES ('$titre', '$sousTitre', '$dates', '$description', '1')"); // mettre $id_utilisateur quand on l'aura dans la variable de session
+        $pdoCV -> exec("INSERT INTO t_experiences (e_titre, e_soustitre, e_dates, e_description, utilisateur_id) VALUES ('$titre', '$sousTitre', '$dates', '$description', '$id_utilisateur')"); // mettre $id_utilisateur quand on l'aura dans la variable de session
         header("location:experiences.php");
         exit();
 
@@ -22,14 +33,14 @@ if(isset($_POST['e_titre'])){ // Si on a posté une nouvelle compétence
 if(isset($_GET['id_experience'])){
  // on récupère la compétence par son ID dans l'url
     $efface = $_GET['id_experience'];
-    $resultat = " DELETE FROM t_experiences WHERE id_experience = '$efface' ";
-    $pdoCV ->query($resultat);
+    $sql = " DELETE FROM t_experiences WHERE id_experience = '$efface' ";
+    $pdoCV ->query($sql);
     header("location: experiences.php");
 } // ferme le if isset supression
 
-    $resultat = $pdoCV -> prepare("SELECT * FROM t_experiences WHERE utilisateur_id = '1'");
-    $resultat -> execute();
-    $nbr_experiences =  $resultat -> rowCount();
+    $sql = $pdoCV -> prepare("SELECT * FROM t_experiences WHERE utilisateur_id = '$id_utilisateur'");
+    $sql -> execute();
+    $nbr_experiences =  $sql -> rowCount();
 
 
 include('inc/header.inc.php');
@@ -46,7 +57,11 @@ include('inc/nav.inc.php');
         <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <p> Il y a <?= $nbr_experiences; ?> expériences</p>
+                    <p> Il y a <?php if ($nbr_experiences <= 1){
+                        echo $nbr_experiences.' experience';
+                        }else{
+                        echo $nbr_experiences.' experiences';
+                        }?></p>
                 </div>
             </div>
             <div class="panel panel-default">
@@ -54,6 +69,9 @@ include('inc/nav.inc.php');
                     <p>Liste des expériences</p>
                 </div>
                 <div class="panel-body">
+                    <div class="table-responsive">
+
+
                     <table class="table table-bordered table-striped">
                         <tr>
                             <th>Titre</th>
@@ -65,7 +83,7 @@ include('inc/nav.inc.php');
 
                         </tr>
                         <tr>
-                        <?php while($ligne_experience = $resultat -> fetch(PDO::FETCH_ASSOC) ) {?>
+                        <?php while($ligne_experience = $sql -> fetch(PDO::FETCH_ASSOC) ) {?>
                            <td><?php echo $ligne_experience['e_titre'] ;?></td>
                            <td><?php echo $ligne_experience['e_soustitre'] ;?></td>
                            <td><?php echo $ligne_experience['e_dates'] ;?></td>
@@ -75,6 +93,7 @@ include('inc/nav.inc.php');
                        </tr>
                         <?php } ?>
                     </table>
+                    </div>
                 </div>
             </div>
         </div>

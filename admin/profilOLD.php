@@ -1,45 +1,34 @@
 <?php
 include('inc/init.inc.php');
 
-if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){
-    $id_utilisateur = $_SESSION['id_utilisateur'];
-    $prenom = $_SESSION['prenom'];
-    $nom = $_SESSION['nom'];
 
-    // echo $_SESSION['connexion']; test fonctionne
-
-}else{ // l'utilisateur n'est pas connecté
-    header('location: connexionAdmin.php');
-} // fun du if isset
-
-
-$resultat = $pdoCV -> query("SELECT * FROM t_utilisateurs WHERE id_utilisateur = '$id_utilisateur'");
-$ligne_utilisateur = $resultat -> fetch(PDO::FETCH_ASSOC);
+$sql = $pdoCV -> query("SELECT * FROM t_utilisateurs WHERE id_utilisateur = '1'");
+$ligne_utilisateur = $sql -> fetch(PDO::FETCH_ASSOC);
 
 // requête pour compter les expériences
-$resultat = $pdoCV -> prepare("SELECT * FROM t_experiences WHERE utilisateur_id = '$id_utilisateur'");
-$resultat -> execute();
-$nbr_experiences =  $resultat -> rowCount();
+$sql = $pdoCV -> prepare("SELECT * FROM t_experiences WHERE utilisateur_id = '1'");
+$sql -> execute();
+$nbr_experiences =  $sql -> rowCount();
 
 // requête pour compter les réalisations
-$resultat = $pdoCV -> prepare("SELECT * FROM t_realisations WHERE utilisateur_id = '$id_utilisateur'");
-$resultat -> execute();
-$nbr_realisations =  $resultat -> rowCount();
+$sql = $pdoCV -> prepare("SELECT * FROM t_realisations WHERE utilisateur_id = '1'");
+$sql -> execute();
+$nbr_realisations =  $sql -> rowCount();
 
 // requête pour compter les formations
-$resultat = $pdoCV -> prepare("SELECT * FROM t_formation WHERE utilisateur_id = '$id_utilisateur'");
-$resultat -> execute();
-$nbr_formations =  $resultat -> rowCount();
+$sql = $pdoCV -> prepare("SELECT * FROM t_formation WHERE utilisateur_id = '1'");
+$sql -> execute();
+$nbr_formations =  $sql -> rowCount();
 
 // requête pour compter les competences
-$resultat = $pdoCV -> prepare("SELECT * FROM t_competences WHERE utilisateur_id = '$id_utilisateur'");
-$resultat -> execute();
-$nbr_competences =  $resultat -> rowCount();
+$sql = $pdoCV -> prepare("SELECT * FROM t_competences WHERE utilisateur_id = '1'");
+$sql -> execute();
+$nbr_competences =  $sql -> rowCount();
 
 // requête pour compter les loisirs
-$resultat = $pdoCV -> prepare("SELECT * FROM t_loisirs WHERE utilisateur_id = '$id_utilisateur'");
-$resultat -> execute();
-$nbr_loisirs =  $resultat -> rowCount();
+$sql = $pdoCV -> prepare("SELECT * FROM t_loisirs WHERE utilisateur_id = '1'");
+$sql -> execute();
+$nbr_loisirs =  $sql -> rowCount();
 
 
 

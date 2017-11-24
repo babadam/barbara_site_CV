@@ -1,6 +1,16 @@
 <?php
 include('inc/init.inc.php');
 
+if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){
+    $id_utilisateur = $_SESSION['id_utilisateur'];
+    $prenom = $_SESSION['prenom'];
+    $nom = $_SESSION['nom'];
+
+    // echo $_SESSION['connexion'];
+}else{ // l'utilisateur n'est pas connecté
+    header('location: connexionAdmin.php');
+}
+
 
 if(isset($_POST['competence'])){ // Si on a posté une nouvelle compétence
     echo 'rentre dans ligne 6 => ok';
@@ -8,7 +18,7 @@ if(isset($_POST['competence'])){ // Si on a posté une nouvelle compétence
         echo 'rentre dans $_POST pas vide IF ligne 8';
         $competence = addslashes($_POST['competence']);
         $c_niveau = addslashes($_POST['c_niveau']);
-        $pdoCV -> exec("INSERT INTO t_competences (id_competence, competence, c_niveau, utilisateur_id) VALUES (NULL, '$competence', '$c_niveau', 1)"); // mettre $id_utilisateur quand on l'aura dans la variable de session
+        $pdoCV -> exec("INSERT INTO t_competences (id_competence, competence, c_niveau, utilisateur_id) VALUES (NULL, '$competence', '$c_niveau', $id_utilisateur)"); // mettre $id_utilisateur quand on l'aura dans la variable de session
         header("location:competences.php");
         exit();
 
@@ -20,14 +30,14 @@ if(isset($_POST['competence'])){ // Si on a posté une nouvelle compétence
 if(isset($_GET['id_competence'])){
  // on récupère la compétence par son ID dans l'url
     $efface = $_GET['id_competence'];
-    $resultat = " DELETE FROM t_competences WHERE id_competence = '$efface' ";
-    $pdoCV ->query($resultat);
+    $sql = " DELETE FROM t_competences WHERE id_competence = '$efface' ";
+    $pdoCV ->query($sql);
     header("location: competences.php");
 } // ferme le if isset supression
 
-    $resultat = $pdoCV -> prepare("SELECT * FROM t_competences WHERE utilisateur_id = '1'");
-    $resultat -> execute();
-    $nbr_competences =  $resultat -> rowCount();
+    $sql = $pdoCV -> prepare("SELECT * FROM t_competences WHERE utilisateur_id = '$id_utilisateur'");
+    $sql -> execute();
+    $nbr_competences =  $sql -> rowCount();
 
 
 include('inc/header.inc.php');
@@ -42,7 +52,11 @@ include('inc/nav.inc.php');
         <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <p> Il y a <?= $nbr_competences; ?> competences</p>
+                    <p> Il y a <?php if ($nbr_competences <= 1){
+                        echo $nbr_competences.' competence';
+                    }else{
+                        echo $nbr_competences.' competences';
+                    }?></p>
                 </div>
             </div>
             <div class="panel panel-default">
@@ -50,6 +64,7 @@ include('inc/nav.inc.php');
                     <p>Liste des competences</p>
                 </div>
                 <div class="panel-body">
+                    <div class="table-responsive">
                     <table class="table table-bordered table-striped">
                         <tr>
                             <th>Compétence</th>
@@ -58,7 +73,7 @@ include('inc/nav.inc.php');
                             <th>Supression</th>
                         </tr>
                         <tr>
-                        <?php while($ligne_competence = $resultat -> fetch(PDO::FETCH_ASSOC) ) {?>
+                        <?php while($ligne_competence = $sql -> fetch(PDO::FETCH_ASSOC) ) {?>
                            <td><?php echo $ligne_competence['competence'] ;?></td>
                            <td><?php echo $ligne_competence['c_niveau'] ;?></td>
                            <td><a href="modif_competence.php?id_competence=<?= $ligne_competence['id_competence']; ?>"><button type="button" class="btn btn-success">Modifier</button></a></td>
@@ -66,6 +81,7 @@ include('inc/nav.inc.php');
                        </tr>
                         <?php } ?>
                     </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -92,6 +108,5 @@ include('inc/nav.inc.php');
             </div>
         </div>
     </div>
-
 </div>
-            <?php include('inc/footer.inc.php'); ?>
+<?php include('inc/footer.inc.php'); ?>
