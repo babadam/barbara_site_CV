@@ -12,6 +12,7 @@ if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){ // si 
 }
 
 
+
 if(isset($_POST['loisir'])){ // Si on a posté une nouvelle compétence
     if(!empty($_POST['loisir'])){ // Si compétence n'est pas vide
         $loisir = addslashes($_POST['loisir']);

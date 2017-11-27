@@ -7,27 +7,17 @@ if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){ // si 
     $prenom = $_SESSION['prenom'];
     $nom = $_SESSION['nom'];
 
-    echo $_SESSION['connexion'];
+    // echo $_SESSION['connexion'];
 }else{ // l'utilisateur n'est pas connecté
     header('location: connexionAdmin.php');
 }
 
+
+
 $sql = $pdoCV -> query("SELECT * FROM t_utilisateurs WHERE id_utilisateur = '$id_utilisateur'");
 $ligne_utilisateur = $sql -> fetch(PDO::FETCH_ASSOC);
 
-if(isset($_POST['r_titre'])){ // Si on a posté une nouvelle compétence
-    echo 'rentre dans ligne 6 => ok';
-    if(!empty($_POST['r_titre']) && !empty($_POST['r_soustitre']) && !empty($_POST['r_dates']) && !empty($_POST['r_description'])){ // Si compétence n'est pas vide
-        $titre = addslashes($_POST['r_titre']);
-        $sousTitre = addslashes($_POST['r_soustitre']);
-        $dates = addslashes($_POST['r_dates']);
-        $description = addslashes($_POST['r_description']);
-        $pdoCV -> exec("INSERT INTO t_realisations (r_titre, r_soustitre, r_dates, r_description, utilisateur_id) VALUES ('$titre', '$sousTitre', '$dates', '$description', '$id_utilisateur')"); // mettre $id_utilisateur quand on l'aura dans la variable de session
-        header("location:realisations.php");
-        exit();
 
-    }// ferme if n'est pas vide
-}
 
 // Supression d'une compétence
 if(isset($_GET['id_realisation'])){

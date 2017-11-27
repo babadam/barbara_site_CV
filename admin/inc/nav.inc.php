@@ -1,5 +1,5 @@
 <body>
-    <nav class="navbar navbar-inverse couleur"> <!--NAV-->
+    <nav class="navbar navbar-fixed-top navbar-inverse couleur"> <!--NAV-->
         <div class="container-fluid shadowNav">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -37,9 +37,6 @@
                          <!-- <ul class="nav navbar-nav"> -->
                             <a class="navbar-brand" href="connexionAdmin.php?action=deconnexion"><span class="glyphicon glyphicon-off" aria-hidden="true"></a>
 
-                          <!-- <li><a class="navbar-brand" href="connexionAdmin.php?action=deconnexion"><span class="glyphicon glyphicon-off" aria-hidden="true"></a></li> -->
-
-                         <!-- </ul> -->
                      </div>
                  </div>
              </div><!-- fin container fluid-->

@@ -11,6 +11,7 @@ if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){ // si 
     header('location: connexionAdmin.php');
 }
 
+
 // mise à jour d'une compétence
 if(isset($_POST['loisir'])){ // par le nom d'une premier input
     $loisir = addslashes($_POST['loisir']);

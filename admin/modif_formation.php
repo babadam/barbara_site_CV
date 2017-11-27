@@ -14,6 +14,8 @@ if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){ // si 
 }else{ // l'utilisateur n'est pas connecté
     header('location: connexionAdmin.php');
 }
+
+
 // mise à jour d'une compétence
 if(isset($_POST['f_titre'])){ // Si on a posté une nouvelle compétence
     echo 'rentre dans ligne 6 => ok';

@@ -1,0 +1,58 @@
+*{
+    padding : 0;
+    margin : 0;
+}
+
+/****************** SECTIONS ************************/
+#slide1 {
+	background:url(../img/slide3-bg.jpg) center 0 no-repeat fixed;
+    margin-top: 60px;
+}
+
+#slide2 {
+	/*background: url(../img/slide2-bg.jpg) center 0 no-repeat fixed;*/
+    background: mistyrose;
+    height: 500px;
+}
+
+#slide3 {
+	background:url(../img/slide3-bg.jpg) center 0 no-repeat fixed;
+}
+/****************** FIN SECTIONS ************************/
+
+/* Gestion du contenu */
+.slide_inside {
+	width: 980px;
+	margin: 0 auto;
+    height : 950px;
+}
+
+#slide1  .slide_inside {
+	text-align:center;
+}
+
+#slide2 .slide_inside p {
+	width: 500px;
+	text-align:justify;
+}
+
+#slide3 .slide_inside {
+	background-color: rgba(0, 0, 0, 0.5);
+	/*margin-top:50px;*/
+	padding:50px;
+}
+
+/********************** LOGO ************************/
+#logo{
+    width: 25%;
+}
+/********************* FIN LOGO *******************/
+
+/********************* NAV ************************/
+nav{
+    height : 80px;
+    background: red;
+    /*position: fixed;
+    z-index: 1;*/
+}
+/********************* FIN NAV ************************/

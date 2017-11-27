@@ -5,12 +5,15 @@ if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){
     $id_utilisateur = $_SESSION['id_utilisateur'];
     $prenom = $_SESSION['prenom'];
     $nom = $_SESSION['nom'];
+    $pseudo = $_SESSION['pseudo'];
 
     // echo $_SESSION['connexion']; test fonctionne
 
 }else{ // l'utilisateur n'est pas connecté
     header('location: connexionAdmin.php');
 } // fun du if isset
+
+
 
 
 $resultat = $pdoCV -> query("SELECT * FROM t_utilisateurs WHERE id_utilisateur = '$id_utilisateur'");

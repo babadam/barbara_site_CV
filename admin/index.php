@@ -12,6 +12,8 @@ if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){
 }
 
 
+
+
 include('inc/header.inc.php');
 include('inc/nav.inc.php');
 ?>

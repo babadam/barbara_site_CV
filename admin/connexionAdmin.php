@@ -4,17 +4,20 @@ require_once('inc/init.inc.php');
 require_once('inc/fonctions.inc.php');
 
 
-// Traitement pour la déconnexion :
-if(isset($_GET['action']) && $_GET['action'] == 'deconnexion'){ // Si une action est demandée dans l'url et que cette action est "deconnexion" alors on procède à la deconnexion.
-    unset($_SESSION['t_utilisateurs']);
-    header('location: connexionAdmin.php');
-}
+//Traitement pour la deconnexion de l'admin
+if(isset($_GET['action']) && $_GET['action'] == 'deconnexion'){
+    // unset($_SESSION['t_utilisateurs']);
+    // header('location: connexionAdmin.php');
+    $_SESSION['connexion']=''; // on vide les variables de SESSION
+    $_SESSION['id_utilisateur']='';
+    $_SESSION['prenom']='';
+    $_SESSION['nom']='';
+    $_SESSION['pseudo']='';
 
-// Traitement pour rediriger l'utilisateur s'il est déjà connécté
-if(userConnecte()){
-    header('location: profil.php');
+    unset($_SESSION['connexion']); // connexion = name du bouton submit
+    session_destroy();
+    header('location: ../accueil_pro.html');
 }
-
 
 
 if(isset($_POST['connexion'])){ // on envoie le form avec le name du boutton
@@ -38,52 +41,6 @@ if(isset($_POST['connexion'])){ // on envoie le form avec le name du boutton
     } // ferme le if else
 }// ferme le if isset
 
-
-
-//     // On vérifie que les deux champs ne sont pas vides
-//     if(!empty($_POST['pseudo']) && !empty($_POST['mdp'])){
-//
-//         // On connecte le membre en enregistrant ses infos dans la session
-//         // -> Le membre existe-t-il en BDD ?
-//         $sql = $pdoCV -> prepare("SELECT * FROM t_utilisateurs WHERE pseudo = :pseudo");
-//         $sql -> bindParam(':pseudo', $_POST['pseudo'], PDO::PARAM_STR);
-//         $sql -> execute();
-//
-//         if($sql -> rowCount() > 0){ // signifie que le pseudo est déja inscrit dans la BDD puisque supérieur à 0 donc pas nul
-//
-//
-//             // -> Le MDP saisi correspond au pseudo en BDD
-//             $membre = $sql -> fetch(PDO::FETCH_ASSOC); // On récupère toutes les infos du membre qui souhaite se connecter sous la forme d'un array
-//             if($membre['mdp'] == $_POST['mdp']){ // si (mdp_crypte_en_bdd == mdp saisi + crypté... ALORS TOUT EST OK)
-//                 // Tout est OK on peut connecter l'utilisateur
-//                 foreach($membre as $indice => $valeur){
-//                     if($indice != 'mdp'){
-//                         $_SESSION['t_utilisateurs'][$indice] = $valeur;
-//                     }
-//                 }
-//                 // debug($membre);
-//
-//                 // redirection
-//                 header('location:profil.php');
-//             }
-//             else{
-//                 $msg .= '<div class="alert alert-danger">Mot de passe erroné !</div>';
-//             }
-//         }
-//
-//
-//         else{
-//             $msg .= '<div class="alert alert-danger"> Le pseudo '. $_POST['pseudo'].' n\'est pas reconnu.</div>';
-//         }
-//
-//     }// fin du if de verification si les deux champs ne sont pas vides
-//     else{
-//         $msg .= '<div class="alert alert-danger"> Veuillez renseigner un pseudo et un mot de passe !</div>';
-//     }
-//
-//
-//
-// } // fin du if (!empty($_POST))
 
 
 $page = 'Connexion';

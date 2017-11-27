@@ -12,6 +12,8 @@ if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){
 }
 
 
+
+
 if(isset($_POST['competence'])){ // Si on a posté une nouvelle compétence
     echo 'rentre dans ligne 6 => ok';
     if(!empty($_POST['competence']) && !empty($_POST['c_niveau'])){ // Si compétence n'est pas vide
