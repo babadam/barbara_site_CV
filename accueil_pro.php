@@ -20,8 +20,9 @@
         </nav>
         <div id="slide1">
             <div class="slide_inside">
-                <h1>Page front</h1>
-                <h2>Compétences</h2>
+                <h1>Tousverts Barbara</h1
+                <p>Recherche d'un stage de deux mois</p>
+                <p>Développement - Intégration Web</p>
             </div> <!--fin .slide_inside-->
         </div> <!--fin #slide1-->
 
@@ -36,5 +37,6 @@
                 <h2>Crédits</h2>
             </div> <!--.slide_inside-->
         </div>
+        <script src="js/main.js" type="text/javascript"></script>
     </body>
 </html>
