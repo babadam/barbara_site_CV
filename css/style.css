@@ -6,7 +6,7 @@
 /****************** SECTIONS ************************/
 #slide1 {
 	background:url(../img/slide3-bg.jpg) center 0 no-repeat fixed;
-    margin-top: 60px;
+    /*max-width: 100%;*/
 }
 
 #slide2 {
@@ -18,7 +18,7 @@
 #slide3 {
 	background:url(../img/slide3-bg.jpg) center 0 no-repeat fixed;
 }
-/****************** FIN SECTIONS ************************/
+
 
 /* Gestion du contenu */
 .slide_inside {
@@ -41,7 +41,7 @@
 	/*margin-top:50px;*/
 	padding:50px;
 }
-
+/****************** FIN SECTIONS ************************/
 /********************** LOGO ************************/
 #logo{
     width: 25%;
@@ -50,9 +50,31 @@
 
 /********************* NAV ************************/
 nav{
-    height : 80px;
-    background: red;
-    /*position: fixed;
-    z-index: 1;*/
-}
+    background: ORCHID;
+    position: fixed;
+    width: 100%;
+    text-align: right;
+    font-family: 'Francois One', sans-serif;
+    }
+    nav a{
+        text-decoration: none;
+        padding: 30px 10px;
+        color: white;
+    }
+    .listeNav{
+        line-height: 43px;
+        padding-top: 25px;
+        padding-right: 60px;
+    }
+    }
+
+
+
+
+
 /********************* FIN NAV ************************/
+/********************* DEBUT TITRE *******************/
+h1{
+    padding-top: 100px;
+}
+/********************* FIN TITRE *******************/
