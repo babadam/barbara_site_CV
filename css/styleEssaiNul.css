@@ -1,11 +1,19 @@
-*{
+/**{
     padding : 0;
     margin : 0;
-    box-sizing: border-box;
+    /*box-sizing: border-box;
+}*/
+
+/*html {
+  font-size: 62.5%;
+  font-size: calc(1em * .625);
 }
+
 body {
-    font-family: 'Francois One', sans-serif;
-}
+  margin: 0;
+  font-size: 1.6em;
+  font-family: arial, sans-serif;
+}*/
 
 /*.main {
   padding: 5rem 2rem;
@@ -21,7 +29,7 @@ body {
 
 #slide2 {
 	/*background: url(../img/slide2-bg.jpg) center 0 no-repeat fixed;*/
-    background: #1B1B1B;
+    background: mistyrose;
     height: 500px;
     /*background-size: cover;*/
 }
@@ -52,7 +60,7 @@ body {
 	background-color: rgba(0, 0, 0, 0.5);
 	/*margin-top:50px;*/
 	padding:50px;
-    background-size: cover;
+    /*background-size: cover;*/
 }
 /****************** FIN SECTIONS ************************/
 /********************** LOGO ************************/
@@ -70,30 +78,35 @@ nav{
     font-family: 'Francois One', sans-serif;
     box-shadow: 0px 2px 11px 1px rgba(0,0,0,0.75);
     }
-    .navigation{
+    nav a{
+        text-decoration: none;
+        padding: 30px 10px;
+        color: black;
+    }
+    /*.navigation{
         line-height: 43px;
         padding-top: 25px;
-        padding-right: 40px;
+        padding-right: 60px;
     }
 
     .navigation > a {
-      padding: 2rem 0.5rem;
-      color: black;
-      text-decoration: none;
-    }
-    .navigation > a:hover,
+      /*padding: 2rem 1rem;*/
+      /*background: #333;*/
+      /*text-decoration: none;
+    }*/
+    /*.navigation > a:hover,
     .navigation > a:focus,
-    .navigation > a:active{
-      color: #555;
-    }
+    .navigation > a:active {
+      background: #555;
+    }*/
 
-    .nav-button {
+    /*.nav-button {
       display: none; /* no button by default */
-      position: absolute;
+     /* position: absolute;
       top: 1rem;
       right: 1rem;
       z-index: 1; /* will be above everything */
-     height: 2.4rem;
+     /* height: 2.4rem;
       width: 2.8rem;
       background-color: transparent;
       background-image: linear-gradient(to right, currentColor, currentColor);
@@ -103,13 +116,11 @@ nav{
       padding: 0;
       outline: 0;
       border: 0;
-      color: mistyrose;
+      color: pink;
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
-    }
-
-    /*barre du haut et du bas du bouton*/
-    .nav-button::before,
+    }*/
+    /*.nav-button::before,
     .nav-button::after {
       content: "";
       position: absolute;
@@ -126,10 +137,10 @@ nav{
     }
     .nav-button::after {
       top: calc(100% - 4px);
-    }
+    }*/
 
 
-    @media screen and (max-width: 545px) {
+    /*@media (max-width: 545px) {
       .js-enabled html,
       .js-enabled body {
         overflow-x: hidden;
@@ -145,108 +156,31 @@ nav{
         left: 0;
         z-index: 1;
       }
+
       /* styling opened nav */
-      .js-enabled .navigation {
-        transition: transform .25s; /* vitesse d'ouverture*/
+      /*.js-enabled .navigation {
+        transition: transform .25s;
         will-change: transform;
-        transform: translateX(-100%); /* pour rabattre */
+        transform: translateX(-100%);
       }
       .js-enabled .navigation.is-opened {
         transform: translateX(0);
       }
-      .navigation{
-          padding-right: 0;
+    }*/
 
-      }
-      .navigation>a{
-          display: block;
-          padding: 0;
-          text-align: center;
-          border-bottom: 1px solid black;
-      }
-      .navigation>a:hover{
-          background-color : lightgray;
-      }
-      #slide1, #slide2, #slide3{
-          width: 100%;
-      }
 
-    } /* fin media query 545px*/
+
+
+
+
+
 /********************* FIN NAV ************************/
-
-/********************* DEBUT TYPE *********************/
-.blinking-cursor {
-    font-weight: 500;
-    margin-left: 4px;
-    font-size: 20px;
-    color: white !important;
-    -webkit-animation: 1s blink step-end infinite;
-    -moz-animation: 1s blink step-end infinite;
-    -ms-animation: 1s blink step-end infinite;
-    -o-animation: 1s blink step-end infinite;
-    animation: 1s blink step-end infinite;
-  }
-
-@keyframes "blink" {
-  from, to {
-    color: transparent;
-  }
-  50% {
-    color: white;
-  }
-}
-
-@-moz-keyframes blink {
-  from, to {
-    color: transparent;
-  }
-  50% {
-    color: white;
-  }
-}
-
-@-webkit-keyframes "blink" {
-  from, to {
-    color: transparent;
-  }
-  50% {
-    color: white;
-  }
-}
-
-@-ms-keyframes "blink" {
-  from, to {
-    color: transparent;
-  }
-  50% {
-    color: white;
-  }
-}
-
-@-o-keyframes "blink" {
-  from, to {
-    color: transparent;
-  }
-  50% {
-    color: white;
-  }
-}
-#holder{
-    color: #17202A;
-    font-size: 2.5em;
-    text-shadow: 2px 1px 4px rgba(150, 150, 150, 1);
-    background-color: mistyrose;
-    padding: 0 15px;
-}
-/********************* FIN TYPE *********************/
-
 /********************* DEBUT TITRE *******************/
 h1{
     padding-top: 28%;
-    margin-bottom: 30px;
     text-transform: uppercase;
     font-family: 'Francois One', sans-serif;
     letter-spacing: 2px;
-    font-size: 4em;
+    font-size: 3em;
 }
 /********************* FIN TITRE *******************/
