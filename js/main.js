@@ -29,6 +29,7 @@ toggleNav();
 }());
 
 
+// animation typed
 $(document).ready(function() {
 
   // typing animation
@@ -49,3 +50,13 @@ $(document).ready(function() {
   // input text for typing animation
   $("#holder").writeText("Développeuse - intégratrice web : je recherche un stage ");
 })
+
+// smooth scroll
+$(document).ready(function() {
+    $('.js-scrollTo').on('click', function() { // Au clic sur un élément
+        var page = $(this).attr('href'); // Page cible
+        var speed = 750; // Durée de l'animation (en ms)
+        $('html, body').animate( { scrollTop: $(page).offset().top }, speed ); // Go
+        return false;
+    });
+});
