@@ -6,11 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Admin : <?= $ligne_utilisateur['pseudo']?> </title>
+        <!--CKEditor-->
+        <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
         <link href="https://fonts.googleapis.com/css?family=Amaranth|Lobster+Two" rel="stylesheet">
+
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

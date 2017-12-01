@@ -106,8 +106,11 @@ include('inc/nav.inc.php');
                         </div>
                         <div class="form-group">
                             <label for="r_description">Description</label>
-                            <textarea class="form-control" id="r_description" name="r_description" placeholder="Décrire la formation"></textarea>
+                            <textarea class="form-control" id="editor1" name="r_description" placeholder="Décrire la formation"></textarea>
                         </div>
+                        <script>
+                                CKEDITOR.replace('editor1');
+                        </script>
 
                         <button type="submit" class="btn btn-info btn-block">Submit</button>
                     </form>

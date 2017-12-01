@@ -77,6 +77,14 @@ h1{
 h2{
     padding-top: 2%;
     color: lightgray;
+    text-align: center;
+    font-size: 2em;
+}
+h3{
+    color: #1B1B1B;
+    text-align: center;
+    font-size: 1.2em;
+    padding-top: 5%;
 }
 /********************* FIN TITRE *******************/
 
@@ -217,16 +225,48 @@ nav{
 }
 /********************* FIN TYPE *********************/
 /********************* PAGE COMPETENCE **************/
-.box{
-    width: 30%;
-border: 1px solid red;
-height: 50px;
-float: left;
-margin-left: 2%;
-text-align: center;
-font-size: 1.5em;
-color: white;
+.conteneur{
+    width: 100%;
+    /*border: 1px solid white;*/
+    height: 300px;
 }
+.competence{
+    width: 30%;
+    /*border: 1px solid red;*/
+    height: 250px;
+    float: left;
+    margin: 0 15px;
+}
+.icone_competence{
+    /*border: 1px solid green;*/
+    width: 70%;
+    height: 50px;
+    z-index: 1;
+    margin: 0 auto;
+    text-align: center;
+    }
+    .icone_competence span{
+        color: mistyrose;
+        font-size: 200%;
+    }
+
+.texte_competence{
+    /*border: 1px solid blue;*/
+    width: 70%;
+    margin: 0 auto;
+    height: 150px;
+    background-color: mistyrose;
+    box-shadow: inset 0px 0px 5px 2px rgba(0,0,0,0.64);
+    }
+    .texte_competence ul{
+        list-style: none;
+        text-align: center;
+        color: #1B1B1B;
+        margin-top: 9%;
+    }
+    .texte_competence ul li{
+
+    }
 
 /*********************FIN  PAGE COMPETENCE **************/
 
@@ -273,7 +313,7 @@ color: white;
       width: 100%;
   }
   #slide1{
-      height: 400px;
+      height: 300px;
   }
   h1{
       font-size: 1.5em;
@@ -290,6 +330,19 @@ color: white;
       width: 25%;
       padding-left: 20vw;
   }
-
+  /******* RESPONSIVE PAGE COMPETENCE ***********/
+  .competence{
+      clear: both;
+      height: 200px;
+  }
+  #slide2{
+      height: 500px;
+  }
+  #slide2 .slide_inside h2{
+      font-size: 1.5em;
+      width: 20%;
+      padding-top: 1%;
+  }
+  /******* FIN RESPONSIVE PAGE COMPETENCE ***********/
 
 } /* fin media query 545px*/
