@@ -1,8 +1,19 @@
+<?php
+require_once('admin/inc/init.inc.php');
+
+$competences = $pdoCV -> query("SELECT * FROM t_competences WHERE utilisateur_id = 1");
+$ligne_competence = $competences -> fetchAll(PDO::FETCH_ASSOC);
+echo '<pre>';
+print_r($ligne_competence);
+echo '</pre>';
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Site public - Barbara</title>
+        <title>Site public -<?= $ligne_utilisateur['prenom'] ?></title>
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Francois+One|Josefin+Sans|Oswald" rel="stylesheet">
@@ -16,9 +27,11 @@
             <a href="#" class="js-scrollTo">Loisirs</a>
             <a href="#" class="js-scrollTo">Réseaux</a>
         </nav>
+        <!-- bouton pour nav responsive -->
         <div class="main" role="main">
           <button class="nav-button" role="button" type="button" aria-label="navigation"></button>
         </div>
+
         <div id="slide1">
             <div class="slide_inside">
                 <h1>Barbara Tousverts </h1>
@@ -29,23 +42,26 @@
         <div id="slide2">
             <div class="slide_inside">
                 <h2>Compétences</h2>
+
                 <div class="conteneur">
                     <div class="competence">
                         <div class="icone_competence">
                             <span><i class="fa fa-code" aria-hidden="true"></i></span>
                         </div>
                         <div class="texte_competence">
-                            <div class="a">
-
-
                             <h3>Intégration</h3>
-                            <ul>
-                                <li>HTML</li>
-                                <li>CSS</li>
-                                <li>JAVASCRIPT</li>
-                                <li>JQUERY</li>
-                            </ul>
-                        </div>
+                            <?php
+                                for($i = 0; $i < count($ligne_competence); $i++ ){
+                                    // echo '<pre style="color: black; background-color:white;">';
+                                    // print_r($ligne_competence[$i]);
+                                    // echo '</pre>';
+                                    if($ligne_competence[$i]['categorie'] == 'dev_front'){
+                                        echo '<p>';
+                                        echo $ligne_competence[$i]['competence'];
+                                        echo '</p>';
+                                    }
+                                }
+                            ?>
                         </div>
                     </div>
                     <div class="competence">
@@ -54,11 +70,18 @@
                         </div>
                         <div class="texte_competence">
                             <h3>Développement</h3>
-                            <ul>
-                                <li>MYSQL</li>
-                                <li>PHP</li>
-                                <li>SILEX</li>
-                            </ul>
+                            <?php
+                                for($i = 0; $i < count($ligne_competence); $i++ ){
+                                    // echo '<pre style="color: black; background-color:white;">';
+                                    // print_r($ligne_competence[$i]);
+                                    // echo '</pre>';
+                                    if($ligne_competence[$i]['categorie'] == 'dev_back'){
+                                        echo '<p>';
+                                        echo $ligne_competence[$i]['competence'];
+                                        echo '</p>';
+                                    }
+                                }
+                            ?>
                         </div>
                     </div>
                     <div class="competence">
@@ -67,9 +90,18 @@
                         </div>
                         <div class="texte_competence">
                             <h3>Framework</h3>
-                            <ul>
-                                <li>BOOTSTRAP</li>
-                            </ul>
+                            <?php
+                                for($i = 0; $i < count($ligne_competence); $i++ ){
+                                    // echo '<pre style="color: black; background-color:white;">';
+                                    // print_r($ligne_competence[$i]);
+                                    // echo '</pre>';
+                                    if($ligne_competence[$i]['categorie'] == 'framework'){
+                                        echo '<p>';
+                                        echo $ligne_competence[$i]['competence'];
+                                        echo '</p>';
+                                    }
+                                }
+                            ?>
                         </div>
                     </div>
                 </div>

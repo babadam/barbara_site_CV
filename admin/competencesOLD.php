@@ -20,8 +20,7 @@ if(isset($_POST['competence'])){ // Si on a posté une nouvelle compétence
         echo 'rentre dans $_POST pas vide IF ligne 8';
         $competence = addslashes($_POST['competence']);
         $c_niveau = addslashes($_POST['c_niveau']);
-        $categorie = addslashes($_POST['categorie']);
-        $pdoCV -> exec("INSERT INTO t_competences (id_competence, competence, c_niveau, categorie, utilisateur_id) VALUES (NULL, '$competence', '$c_niveau', '$categorie', $id_utilisateur)"); // mettre $id_utilisateur quand on l'aura dans la variable de session
+        $pdoCV -> exec("INSERT INTO t_competences (id_competence, competence, c_niveau, utilisateur_id) VALUES (NULL, '$competence', '$c_niveau', $id_utilisateur)"); // mettre $id_utilisateur quand on l'aura dans la variable de session
         header("location:competences.php");
         exit();
 
@@ -72,7 +71,6 @@ include('inc/nav.inc.php');
                         <tr>
                             <th>Compétence</th>
                             <th>Niveau en %</th>
-                            <th>Catégorie</th>
                             <th>Modification</th>
                             <th>Supression</th>
                         </tr>
@@ -80,7 +78,6 @@ include('inc/nav.inc.php');
                         <?php while($ligne_competence = $sql -> fetch(PDO::FETCH_ASSOC) ) {?>
                            <td><?php echo $ligne_competence['competence'] ;?></td>
                            <td><?php echo $ligne_competence['c_niveau'] ;?></td>
-                           <td><?php echo $ligne_competence['categorie'] ;?></td>
                            <td><a href="modif_competence.php?id_competence=<?= $ligne_competence['id_competence']; ?>"><button type="button" class="btn btn-success">Modifier</button></a></td>
                            <td><a href="competences.php?id_competence=<?= $ligne_competence['id_competence']; ?>"><button type="button" class="btn btn-danger">Supprimer</button></a></td>
                        </tr>
@@ -105,14 +102,6 @@ include('inc/nav.inc.php');
                         <div class="form-group">
                             <label for="c_niveau">Niveau</label>
                             <input type="text" class="form-control" id="c_niveau" name="c_niveau" placeholder="Insérez votre competence">
-                        </div>
-                        <div class="form-group">
-                            <label for="categorie">Catégorie</label>
-                            <select class="form-control" name="categorie">
-                                <option value="dev_front">Développement front</option>
-                                <option value="dev_back">Développement back</option>
-                                <option value="framework">Framework</option>
-                            </select>
                         </div>
 
                         <button type="submit" class="btn btn-info btn-block">Submit</button>

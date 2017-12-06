@@ -16,7 +16,7 @@ if(isset($_GET['action']) && $_GET['action'] == 'deconnexion'){
 
     unset($_SESSION['connexion']); // connexion = name du bouton submit
     session_destroy();
-    header('location: ../accueil_pro.html');
+    header('location: ../accueil_pro.php');
 }
 
 

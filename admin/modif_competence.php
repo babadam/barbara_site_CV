@@ -16,9 +16,10 @@ if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){ // si 
 if(isset($_POST['competence'])){ // par le nom d'une premier input
     $competence = addslashes($_POST['competence']);
     $c_niveau = addslashes($_POST['c_niveau']);
+    $categorie = addslashes($_POST['categorie']);
     $id_competence = $_POST['id_competence'];
 
-    $pdoCV -> exec("UPDATE t_competences SET competence = '$competence', c_niveau = '$c_niveau' WHERE id_competence = '$id_competence'");
+    $pdoCV -> exec("UPDATE t_competences SET competence = '$competence', c_niveau = '$c_niveau', categorie = '$categorie' WHERE id_competence = '$id_competence'");
     header('location: competences.php');
     exit();
 }
@@ -47,6 +48,13 @@ include('inc/nav.inc.php');
 
             <label for="c_niveau">Niveau :</label><br>
             <input type="number" name="c_niveau" id= "c_niveau" value="<?= $ligne_competence['c_niveau'] ?>"><br><br>
+
+            <label for="categorie">Niveau :</label><br>
+            <select class="form-group" name="categorie">
+                <option value="dev_front">Développement front</option>
+                <option value="dev_back">Développement back</option>
+                <option value="framework">Framework</option>
+            </select><br>
 
             <input hidden name="id_competence" value="<?= $ligne_competence['id_competence'] ?>">
 

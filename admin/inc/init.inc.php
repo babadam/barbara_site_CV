@@ -20,4 +20,5 @@ $sql = $pdoCV -> query("SELECT * FROM t_utilisateurs WHERE id_utilisateur = '1'"
 $ligne_utilisateur = $sql -> fetch(PDO::FETCH_ASSOC);
 
 
+
 require('fonctions.inc.php');

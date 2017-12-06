@@ -75,7 +75,7 @@ include('inc/nav.inc.php');
                                 <li>Code postal : <?php echo $ligne_utilisateur['code_postal'] ;?></li>
                                 <li>Ville : <?php echo $ligne_utilisateur['ville'] ;?></li>
                                 <li>Pays : <?php echo $ligne_utilisateur['pays'] ;?></li>
-                                <li><a href="modif_utilisateur.php?id_utilisateur=<?= $ligne_utilisateur['id_utilisateur']; ?>"><button type="button" class="btn btn-success">Modifier</button></a></li>
+                                <li><a href="modif_utilisateurs.php?id_utilisateur=<?= $ligne_utilisateur['id_utilisateur']; ?>"><button type="button" class="btn btn-success">Modifier</button></a></li>
                             </ul>
                        </div>
                    </div>
