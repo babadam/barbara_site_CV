@@ -3,9 +3,9 @@ require_once('admin/inc/init.inc.php');
 
 $competences = $pdoCV -> query("SELECT * FROM t_competences WHERE utilisateur_id = 1");
 $ligne_competence = $competences -> fetchAll(PDO::FETCH_ASSOC);
-echo '<pre>';
-print_r($ligne_competence);
-echo '</pre>';
+// echo '<pre>';
+// print_r($ligne_competence);
+// echo '</pre>';
 
 ?>
 
@@ -126,25 +126,37 @@ echo '</pre>';
         <div id="slide5">
             <div class="slide_inside">
                 <h2>Contact</h2>
-                <div id="form-main">
-                    <div id="form-div">
-                        <form class="form" id="form1">
-                            <p class="name">
-                                <input name="name" type="text" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Name" id="name" />
-                            </p>
+                <div class="contact">
+                    <div class="info">
+                        <h3>Contactez-moi</h3>
+                        <div class="me">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            <p>Barbara Tousverts</p>
+                            <p>Colombes</p>
+                        </div>
+                        <div class="phone">
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                            <p>06.63.57.70.89</p>
+                        </div>
+                        <div class="email">
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            <p>barbara.tousverts@live.fr</p>
+                        </div>
+                    </div>
+                    <div class="form-container">
+                        <form class="form-contact" action="" method="post">
 
-                            <p class="email">
-                                <input name="email" type="text" class="validate[required,custom[email]] feedback-input" id="email" placeholder="Email" />
-                            </p>
+                            <input type="text" name="nom" id="nom" value="" placeholder="Nom"><br>
 
-                            <p class="text">
-                                <textarea name="text" class="validate[required,length[6,300]] feedback-input" id="comment" placeholder="Comment"></textarea>
-                            </p>
+                            <input type="email" name="email" id="email" value="" placeholder="Email"><br>
 
-                            <div class="submit">
-                                <input type="submit" value="SEND" id="button-blue"/>
-                                <div class="ease"></div>
-                            </div>
+                            <input type="text" name="phone" id="phone" value="" placeholder="Téléphone"><br>
+
+                            <input type="text" name="sujet" id="sujet" value="" placeholder="Sujet"><br>
+
+                            <textarea name="message" rows="8" cols="40" id=message placeholder="Message"></textarea>
+
+                            <input type="submit" name="" value="Envoyer">
                         </form>
                     </div>
                 </div>
