@@ -7,10 +7,6 @@ body {
     font-family: 'Francois One', sans-serif;
 }
 
-/*.main {
-  padding: 5rem 2rem;
-  background: #fff;
-}*/
 
 /****************** SECTIONS ************************/
 #slide1 {
@@ -85,7 +81,6 @@ h1{
     padding-top: 28%;
     margin-bottom: 30px;
     text-transform: uppercase;
-    font-family: 'Francois One', sans-serif;
     letter-spacing: 2px;
     font-size: 4em;
 }
@@ -365,7 +360,32 @@ nav{
 /********************* FIN PAGE CONTACT **************/
 
 /********************* RESPONSIVE *******************/
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 992px){
+    main{
+        width: 100%;
+    }
+    #slide1, #slide2, #slide3, #slide4, #slide5{
+        width: 100%;
+    }
+    /*h1{
+        padding-top: 14%;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 3em;
+        text-align: left;
+        width: 100%;
+        margin: 0 auto;
+    }*/
+    .typed{
+        width: 98%;
+    }
+
+}
+@media screen and (max-width: 570px) {
+
+    main{
+        width: 100%;
+    }
   .js-enabled html,
   .js-enabled body {
     overflow-x: hidden;
@@ -414,6 +434,7 @@ nav{
       width: 20%;
       text-shadow: 3px 1px 1px rgba(150, 150, 150, 1);
       padding-top: 1%;
+      text-align: center;
   }
 
   #holder{
@@ -421,8 +442,8 @@ nav{
       text-align: justify;
   }
   .typed{
-      width: 25%;
-      padding-left: 20vw;
+      width: 40%;
+      /*padding-left: 20vw;*/
   }
   /******* RESPONSIVE PAGE COMPETENCE ***********/
   .competence{
@@ -444,3 +465,18 @@ nav{
     /******* FIN RESPONSIVE PAGE REALISATIONS ***********/
 
 } /* fin media query 545px*/
+@media screen and (max-width: 370px){
+    .typed{
+        width: 25%;
+    }
+    main{
+        width: 100%;
+    }
+    h1{
+        font-size: 1.5em;
+        width: 20%;
+        text-shadow: 3px 1px 1px rgba(150, 150, 150, 1);
+        padding-top: 1%;
+        /*text-align: center;*/
+    }
+}
